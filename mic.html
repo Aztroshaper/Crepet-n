@@ -8,6 +8,10 @@
 
 <style>
 
+/* ========================= */
+/* BASE */
+/* ========================= */
+
 *{
     margin:0;
     padding:0;
@@ -17,16 +21,8 @@
 
 body{
 
-    /* ========================= */
-    /* FONDO */
-    /* ========================= */
-
     background:
-    linear-gradient(
-        rgba(0,0,0,0.72),
-        rgba(0,0,0,0.72)
-    ),
-
+    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
     url("fondo.jpg");
 
     background-size:cover;
@@ -47,247 +43,81 @@ body{
     position:relative;
 }
 
-/* ========================= */
-/* VHS OVERLAY */
-/* ========================= */
-
+/* VHS */
 body::before{
-
     content:"";
-
     position:absolute;
     inset:0;
-
-    background:
-    repeating-linear-gradient(
+    background:repeating-linear-gradient(
         to bottom,
         rgba(255,255,255,0.04) 0px,
         rgba(255,255,255,0.04) 1px,
         transparent 2px,
         transparent 4px
     );
-
     opacity:0.25;
-
     pointer-events:none;
-
     animation:scanlines 0.12s linear infinite;
-
     z-index:999;
 }
 
 @keyframes scanlines{
-
-    from{
-        transform:translateY(0px);
-    }
-
-    to{
-        transform:translateY(4px);
-    }
+    from{transform:translateY(0px);}
+    to{transform:translateY(4px);}
 }
 
 /* ========================= */
-/* OSCURECER BORDES */
-/* ========================= */
-
-body::after{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(
-        circle at center,
-        transparent 35%,
-        rgba(0,0,0,0.82) 100%
-    );
-
-    pointer-events:none;
-}
-
-/* ========================= */
-/* BG BLUR */
-/* ========================= */
-
-.bg{
-
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(
-        circle at center,
-        rgba(255,255,255,0.04) 0%,
-        rgba(0,0,0,0) 70%
-    );
-
-    filter:blur(20px);
-
-    animation:pulse 6s infinite alternate;
-}
-
-@keyframes pulse{
-
-    from{
-        transform:scale(1);
-    }
-
-    to{
-        transform:scale(1.04);
-    }
-}
-
-/* ========================= */
-/* WRAPPER */
+/* LAYOUT */
 /* ========================= */
 
 .wrapper{
-
     position:relative;
     z-index:5;
-
     display:flex;
-
     gap:40px;
-
     align-items:center;
-
     flex-wrap:wrap;
-
     justify-content:center;
 }
 
 /* ========================= */
-/* INTERFAZ */
+/* PANEL UI */
 /* ========================= */
 
 .container{
-
     width:620px;
-
     padding:40px;
-
     border:1px solid rgba(255,255,255,0.08);
-
-    background:
-    linear-gradient(
-        to bottom,
-        rgba(20,20,20,0.18),
-        rgba(5,5,5,0.15)
-    );
-
-    border-radius:4px;
-
-    backdrop-filter:blur(3px);
-
-    box-shadow:
-        0 0 20px rgba(255,255,255,0.03),
-        inset 0 0 20px rgba(255,255,255,0.03);
-
+    background:linear-gradient(to bottom, rgba(20,20,20,0.18), rgba(5,5,5,0.15));
     text-align:center;
-
     position:relative;
-
-    overflow:hidden;
 }
 
-/* VHS TEXTOS */
-
+/* REC / PLAY TEXTOS ORIGINALES */
 .container::before{
-
     content:"REC ●";
-
     position:absolute;
-
     top:15px;
     left:20px;
-
     color:#ff3a3a;
-
     font-size:0.75rem;
-
-    opacity:0.75;
-
     letter-spacing:2px;
-
     animation:blink 1s infinite;
 }
 
 .container::after{
-
     content:"PLAY";
-
     position:absolute;
-
     top:15px;
     right:20px;
-
     color:#9f9f9f;
-
     font-size:0.75rem;
-
     letter-spacing:3px;
-
     opacity:0.5;
 }
 
 @keyframes blink{
-
-    50%{
-        opacity:0.2;
-    }
-}
-
-/* ========================= */
-/* TITULO */
-/* ========================= */
-
-h1{
-
-    font-size:2rem;
-
-    margin-bottom:15px;
-
-    letter-spacing:4px;
-
-    color:#ececec;
-
-    text-shadow:
-        2px 0 rgba(255,0,80,0.15),
-        -2px 0 rgba(0,180,255,0.15);
-
-    animation:textShake 0.08s infinite alternate;
-}
-
-@keyframes textShake{
-
-    from{
-        transform:translateX(0px);
-    }
-
-    to{
-        transform:translateX(1px);
-    }
-}
-
-/* ========================= */
-/* TEXTO */
-/* ========================= */
-
-p{
-
-    opacity:0.6;
-
-    margin-bottom:30px;
-
-    line-height:1.7;
-
-    font-size:0.95rem;
-
-    letter-spacing:1px;
+    50%{opacity:0.2;}
 }
 
 /* ========================= */
@@ -296,59 +126,16 @@ p{
 
 button,
 .linkButton{
-
     border:1px solid rgba(255,255,255,0.12);
-
     padding:18px 28px;
-
-    border-radius:2px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #202020,
-        #080808
-    );
-
+    background:linear-gradient(to bottom, #202020, #080808);
     color:#dcdcdc;
-
     font-weight:bold;
-
-    font-size:0.9rem;
-
     cursor:pointer;
-
-    transition:0.15s;
-
     margin:10px;
-
-    text-decoration:none;
-
     display:inline-block;
-
     letter-spacing:2px;
-
-    box-shadow:
-        inset 0 0 8px rgba(255,255,255,0.04),
-        0 0 10px rgba(255,255,255,0.03);
-}
-
-button:hover,
-.linkButton:hover{
-
-    transform:scale(1.03);
-
-    background:
-    linear-gradient(
-        to bottom,
-        #2b2b2b,
-        #101010
-    );
-}
-
-.linkButton{
-
-    color:#9eb7ff;
+    text-decoration:none;
 }
 
 /* ========================= */
@@ -356,52 +143,30 @@ button:hover,
 /* ========================= */
 
 .status{
-
     margin-top:25px;
-
-    font-size:0.95rem;
-
     opacity:0.8;
-
     min-height:25px;
-
     letter-spacing:2px;
 }
 
 /* ========================= */
-/* AUDIO BARS */
+/* WAVE AUDIO (RESTAURADO) */
 /* ========================= */
 
 .wave{
-
     width:100%;
-
     height:80px;
-
     margin-top:30px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:end;
-
     gap:5px;
 }
 
 .bar{
-
     width:8px;
-
-    background:
-    linear-gradient(
-        to top,
-        #454545,
-        #f0f0f0
-    );
-
+    background:linear-gradient(to top, #454545, #f0f0f0);
     border-radius:2px;
-
     animation:bounce 0.7s infinite alternate;
 }
 
@@ -413,16 +178,8 @@ button:hover,
 .bar:nth-child(7){ animation-delay:0.6s;}
 
 @keyframes bounce{
-
-    from{
-        height:10px;
-        opacity:0.3;
-    }
-
-    to{
-        height:70px;
-        opacity:1;
-    }
+    from{height:10px; opacity:0.3;}
+    to{height:70px; opacity:1;}
 }
 
 .hidden{
@@ -430,84 +187,51 @@ button:hover,
 }
 
 /* ========================= */
-/* GIFS */
+/* GIFS (ORIGINAL RESTAURADO) */
 /* ========================= */
 
 .gifArea{
-
     position:relative;
-
     width:580px;
     height:580px;
-
     display:flex;
-
     justify-content:center;
     align-items:center;
-
-    filter:
-        contrast(120%)
-        brightness(75%)
-        saturate(70%);
-}
-
-.gifArea::before{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-    repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 2px,
-        rgba(255,255,255,0.03) 3px,
-        transparent 4px
-    );
-
-    pointer-events:none;
-
-    z-index:5;
+    filter:contrast(120%) brightness(75%) saturate(70%);
 }
 
 .baseGif,
 .overlayGif{
-
     position:absolute;
-
     width:100%;
     height:100%;
-
     object-fit:contain;
-
-    filter:
-        grayscale(20%)
-        contrast(125%)
-        brightness(75%);
-
-    animation:vhsMove 0.08s infinite alternate;
-}
-
-@keyframes vhsMove{
-
-    from{
-        transform:translateX(0px);
-    }
-
-    to{
-        transform:translateX(1px);
-    }
 }
 
 .overlayGif{
-
     display:none;
-
     mix-blend-mode:screen;
-
     opacity:0.85;
+}
+
+/* ========================= */
+/* TRA GIF FULLSCREEN */
+/* ========================= */
+
+.fullGifOverlay{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.fullGifOverlay img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 </style>
@@ -515,12 +239,9 @@ button:hover,
 
 <body>
 
-<div class="bg"></div>
-
 <div class="wrapper">
 
-    <!-- INTERFAZ -->
-
+    <!-- UI -->
     <div class="container">
 
         <h1>VICTOR NECESITA UNA VOZ</h1>
@@ -529,37 +250,21 @@ button:hover,
             Él puede aprender a imitar tu voz, pero cuidado que no te la robe. Presiona "Voz lista" cuando creas que sea humana.
         </p>
 
-        <button id="startBtn">
-            🎤 ENSEÑAR VOZ
-        </button>
-
-        <button id="stopBtn">
-            ⛔ DETENER
-        </button>
+        <button id="startBtn">🎤 ENSEÑAR VOZ</button>
+        <button id="stopBtn">⛔ DETENER</button>
 
         <br>
 
-        <a
-            class="linkButton"
-            href="h3.html"
-            target="_blank">
-
+        <a class="linkButton" href="h3.html" id="vozLista">
             VOZ LISTA
-
         </a>
 
-        <div
-            class="status"
-            id="status">
-
+        <div class="status" id="status">
             VICTOR ESPERA LA VOZ...
-
         </div>
 
-        <div
-            class="wave hidden"
-            id="wave">
-
+        <!-- WAVE RESTAURADA -->
+        <div class="wave hidden" id="wave">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
@@ -567,55 +272,62 @@ button:hover,
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-
         </div>
 
     </div>
 
-    <!-- GIFS -->
-
+    <!-- GIFS ORIGINALES -->
     <div class="gifArea">
 
-        <img
-            class="baseGif"
-            src="ave3.gif"
-        >
+        <img class="baseGif" src="ave3.gif">
 
-        <img
-            class="overlayGif"
-            id="overlayGif"
-            src="ave4.gif"
-        >
+        <img class="overlayGif" id="overlayGif" src="ave4.gif">
 
     </div>
 
 </div>
 
+<!-- FULLSCREEN TRA -->
+<div class="fullGifOverlay" id="fullOverlay">
+    <img src="tra.gif">
+</div>
+
 <script>
+
+/* ========================= */
+/* AUDIO ENGINE COMPLETO */
+/* ========================= */
 
 let mediaRecorder;
 let audioChunks = [];
 let audioContext;
 let stream;
-let liveSource;
 
-const startBtn =
-    document.getElementById("startBtn");
-
-const stopBtn =
-    document.getElementById("stopBtn");
-
-const statusText =
-    document.getElementById("status");
-
-const wave =
-    document.getElementById("wave");
-
-const overlayGif =
-    document.getElementById("overlayGif");
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const statusText = document.getElementById("status");
+const wave = document.getElementById("wave");
+const overlayGif = document.getElementById("overlayGif");
 
 /* ========================= */
-/* INICIAR */
+/* VOZ LISTA */
+/* ========================= */
+
+const link = document.getElementById("vozLista");
+const fullOverlay = document.getElementById("fullOverlay");
+
+link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    fullOverlay.style.display = "flex";
+
+    setTimeout(() => {
+        window.location.href = "h3.html";
+    }, 2000);
+});
+
+/* ========================= */
+/* START */
 /* ========================= */
 
 startBtn.onclick = async () => {
@@ -624,251 +336,98 @@ startBtn.onclick = async () => {
 
         overlayGif.style.display = "none";
 
-        stream =
-            await navigator.mediaDevices.getUserMedia({
-                audio:true
-            });
+        stream = await navigator.mediaDevices.getUserMedia({ audio:true });
 
-        audioContext =
-            new(
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         audioChunks = [];
 
-        liveSource =
-            audioContext.createMediaStreamSource(stream);
+        const source = audioContext.createMediaStreamSource(stream);
 
-        const softDistortion =
-            audioContext.createWaveShaper();
-
-        softDistortion.curve =
-            makeDistortionCurve(80);
-
-        softDistortion.oversample = '4x';
-
-        const liveDelay =
-            audioContext.createDelay();
-
-        liveDelay.delayTime.value = 0.08;
-
-        const liveFeedback =
-            audioContext.createGain();
-
-        liveFeedback.gain.value = 0.2;
-
-        liveDelay.connect(liveFeedback);
-        liveFeedback.connect(liveDelay);
-
-        const filter =
-            audioContext.createBiquadFilter();
-
+        const filter = audioContext.createBiquadFilter();
         filter.type = "lowpass";
         filter.frequency.value = 2500;
 
-        const liveGain =
-            audioContext.createGain();
+        const gain = audioContext.createGain();
+        gain.gain.value = 0.85;
 
-        liveGain.gain.value = 0.85;
+        source.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioContext.destination);
 
-        liveSource.connect(softDistortion);
+        mediaRecorder = new MediaRecorder(stream);
 
-        softDistortion.connect(filter);
-
-        filter.connect(liveDelay);
-
-        liveDelay.connect(liveGain);
-
-        liveGain.connect(
-            audioContext.destination
-        );
-
-        mediaRecorder =
-            new MediaRecorder(stream);
-
-        mediaRecorder.ondataavailable = e => {
-
-            audioChunks.push(e.data);
-        };
+        mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
 
         mediaRecorder.onstop = async () => {
 
-            const audioBlob =
-                new Blob(audioChunks);
+            const blob = new Blob(audioChunks);
+            const buffer = await blob.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(buffer);
 
-            const arrayBuffer =
-                await audioBlob.arrayBuffer();
-
-            const audioBuffer =
-                await audioContext.decodeAudioData(
-                    arrayBuffer
-                );
-
-            for(
-                let channel = 0;
-                channel < audioBuffer.numberOfChannels;
-                channel++
-            ){
-
-                const channelData =
-                    audioBuffer.getChannelData(channel);
-
-                Array.prototype.reverse.call(
-                    channelData
-                );
+            for(let c=0;c<audioBuffer.numberOfChannels;c++){
+                const data = audioBuffer.getChannelData(c);
+                Array.prototype.reverse.call(data);
             }
 
-            const reverseSource =
-                audioContext.createBufferSource();
+            const src = audioContext.createBufferSource();
+            src.buffer = audioBuffer;
 
-            reverseSource.buffer =
-                audioBuffer;
+            const dist = audioContext.createWaveShaper();
+            dist.curve = makeCurve(600);
 
-            const heavyDistortion =
-                audioContext.createWaveShaper();
+            const lp = audioContext.createBiquadFilter();
+            lp.type = "lowpass";
+            lp.frequency.value = 900;
 
-            heavyDistortion.curve =
-                makeDistortionCurve(600);
-
-            heavyDistortion.oversample = '4x';
-
-            const darkFilter =
-                audioContext.createBiquadFilter();
-
-            darkFilter.type = "lowpass";
-
-            darkFilter.frequency.value = 900;
-
-            const reverseDelay =
-                audioContext.createDelay();
-
-            reverseDelay.delayTime.value = 0.2;
-
-            const reverseFeedback =
-                audioContext.createGain();
-
-            reverseFeedback.gain.value = 0.55;
-
-            reverseDelay.connect(
-                reverseFeedback
-            );
-
-            reverseFeedback.connect(
-                reverseDelay
-            );
-
-            const reverseGain =
-                audioContext.createGain();
-
-            reverseGain.gain.value = 1.2;
-
-            reverseSource.connect(
-                heavyDistortion
-            );
-
-            heavyDistortion.connect(
-                darkFilter
-            );
-
-            darkFilter.connect(
-                reverseDelay
-            );
-
-            reverseDelay.connect(
-                reverseGain
-            );
-
-            reverseGain.connect(
-                audioContext.destination
-            );
+            src.connect(dist);
+            dist.connect(lp);
+            lp.connect(audioContext.destination);
 
             overlayGif.style.display = "block";
 
-            reverseSource.start();
+            src.start();
 
-            statusText.innerText =
-                "▶ VICTOR ESTÁ IMITANDOTE, ESCUCHA BIEN";
+            statusText.innerText = "▶ IMITANDO VOZ";
 
-            reverseSource.onended = () => {
-
+            src.onended = () => {
                 overlayGif.style.display = "none";
-
-                statusText.innerText =
-                    "Esperando...";
+                statusText.innerText = "ESPERANDO...";
             };
         };
 
         mediaRecorder.start();
 
-        statusText.innerText =
-            "🎙 VICTOR ESTÁ ESCUCHANDO...";
-
+        statusText.innerText = "🎙 ESCUCHANDO...";
         wave.classList.remove("hidden");
 
-    }catch(err){
-
-        statusText.innerText =
-            "NO SE PUDO ACCEDER AL MICRÓFONO.";
-
-        console.error(err);
+    }catch(e){
+        statusText.innerText = "ERROR MICRÓFONO";
     }
 };
 
-/* ========================= */
-/* DETENER */
-/* ========================= */
+
 
 stopBtn.onclick = () => {
 
-    if(
-        mediaRecorder &&
-        mediaRecorder.state !== "inactive"
-    ){
-
+    if(mediaRecorder && mediaRecorder.state !== "inactive"){
         mediaRecorder.stop();
-
-        stream.getTracks().forEach(track =>
-            track.stop()
-        );
-
+        stream.getTracks().forEach(t => t.stop());
         wave.classList.add("hidden");
-
-        statusText.innerText =
-            "...";
+        statusText.innerText = "...";
     }
 };
 
-/* ========================= */
-/* DISTORSIÓN */
-/* ========================= */
 
-function makeDistortionCurve(amount){
+function makeCurve(amount){
+    let k = amount || 50;
+    let n = 44100;
+    let curve = new Float32Array(n);
 
-    let k =
-        typeof amount === 'number'
-        ? amount
-        : 50,
-
-    n_samples = 44100,
-
-    curve =
-        new Float32Array(n_samples),
-
-    deg = Math.PI / 180,
-
-    i = 0,
-    x;
-
-    for(; i < n_samples; ++i){
-
-        x = i * 2 / n_samples - 1;
-
-        curve[i] =
-            (3 + k) * x * 20 * deg /
-            (Math.PI + k * Math.abs(x));
+    for(let i=0;i<n;i++){
+        let x = i*2/n - 1;
+        curve[i] = (3+k)*x*20*Math.PI/180/(Math.PI+k*Math.abs(x));
     }
-
     return curve;
 }
 
