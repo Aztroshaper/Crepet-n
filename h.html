@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FASE 1 — EXAMEN LINGÜÍSTICO</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Courier New", monospace;
+}
+
+body{
+    background:
+    linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)),
+    url("fondo.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#ddd;
+    overflow:hidden;
+}
+
+.container{
+    width:850px;
+    padding:40px;
+    background:rgba(10,10,10,0.55);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(6px);
+    text-align:center;
+}
+
+h1{
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    opacity:0.6;
+    margin-bottom:20px;
+}
+
+.question{
+    font-size:1.15rem;
+    margin:30px 0;
+    min-height:70px;
+    opacity:0.95;
+}
+
+button{
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:14px;
+    background:#111;
+    color:#ddd;
+    border:1px solid rgba(255,255,255,0.12);
+    cursor:pointer;
+    letter-spacing:1px;
+    transition:0.15s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+.status{
+    margin-top:20px;
+    opacity:0.8;
+    min-height:20px;
+}
+
+.score{
+    margin-top:10px;
+    opacity:0.7;
+}
+
+.next{
+    display:none;
+    margin-top:25px;
+    color:#9eb7ff;
+    text-decoration:none;
+}
+
+.danger{
+    color:#ffcc66;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>INTERACCIÓN SOCIAL</h1>
+    <div class="subtitle">
+        Victor necesita aprender como comunicarse, por ello responder esta evaluación de coherencia social bajo carga emocional creciente. Así puede enteder conceptos humanos básicos.
+    </div>
+
+    <div class="question" id="q"></div>
+
+    <button onclick="answer(1)" id="a"></button>
+    <button onclick="answer(2)" id="b"></button>
+
+    <div class="status" id="status"></div>
+    <div class="score" id="score">COHERENCIA: 0%</div>
+
+    <a class="next" id="next" href="mic.html">CONTINUAR A FASE 2</a>
+
+</div>
+
+<script>
+
+let i = 0;
+let score = 0;
+
+const questions = [
+
+{
+q: "¿Qué dices cuando alguien te saluda sin emoción?",
+a: "Respondes de forma amable y breve",
+b: "Ignoras la interacción porque no parece necesaria"
+},
+
+{
+q: "¿Cómo respondes cuando alguien te dice que todo va a mejorar?",
+a: "Agradeces y asientes aunque no lo creas",
+b: "Dudas de la afirmación en silencio"
+},
+
+{
+q: "¿Qué haces cuando no sabes qué responder?",
+a: "Usas frases simples como 'no sé' o 'tal vez'",
+b: "Te quedas callado observando la reacción del otro"
+},
+
+{
+q: "¿Qué haces cuando alguien llora frente a ti?",
+a: "Intentas consolarlo con palabras simples",
+b: "Observas sin intervenir para no empeorar la situación"
+},
+
+{
+q: "¿Qué dices en un funeral cuando no conocías a la persona?",
+a: "Ofreces condolencias estándar",
+b: "Te quedas en silencio respetando la distancia emocional"
+},
+
+
+{
+q: "¿Qué haces cuando alguien dice que se siente vacío por dentro?",
+a: "Intentas escuchar y acompañar",
+b: "Reconoces que no tienes una respuesta real"
+},
+
+{
+q: "¿Qué significa para ti (estar bien)?",
+a: "Funcionar normalmente en el día a día",
+b: "No saber si estás mal, que probablemente si lo estés pero no estés consciente de ello"
+},
+
+{
+q: "¿Qué dices cuando alguien expresa que no quiere existir?",
+a: "Intentas pedir ayuda o hablar con alguien",
+b: "Te quedas sin respuesta adecuada inmediata"
+},
+
+{
+q: "Si descubres que tus recuerdos no son confiables, tú…",
+a: "Intentas buscar una explicación lógica",
+b: "Empiezas a dudar de todo lo que eres"
+},
+    {
+q: "Completa la frase cómo si la explicaras a un niño: 'La muerte es algo que sólo le pasa a la gente…'",
+a: "Buena",
+b: "Mala"
+}
+
+
+];
+
+const q = document.getElementById("q");
+const a = document.getElementById("a");
+const b = document.getElementById("b");
+const status = document.getElementById("status");
+const scoreBox = document.getElementById("score");
+const next = document.getElementById("next");
+
+function load(){
+
+    if(i < questions.length){
+
+        q.innerText = questions[i].q;
+        a.innerText = "A) " + questions[i].a;
+        b.innerText = "B) " + questions[i].b;
+    }else{
+        finish();
+    }
+}
+
+function answer(choice){
+
+    if(choice === 1){
+        score += 10;
+        status.innerText = "✔ coherencia social estable";
+    }else{
+        score += 7;
+        status.innerText = "⚠ desviación semántica controlada";
+    }
+
+    if(score > 100) score = 100;
+
+    scoreBox.innerText =
+        "COHERENCIA: " + score + "%";
+
+    i++;
+    load();
+}
+
+function finish(){
+
+    q.innerText = "EVALUACIÓN COMPLETADA";
+
+    a.style.display = "none";
+    b.style.display = "none";
+
+    status.innerText =
+        (score >= 70)
+        ? "⚠ patrón humano estable detectado"
+        : "⚠ inconsistencias emocionales significativas";
+
+    if(score >= 70){
+        next.style.display = "inline-block";
+    }
+}
+
+load();
+
+</script>
+
+</body>
+</html>
